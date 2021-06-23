@@ -17,5 +17,7 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="java-json (1)" level="project" />
+    <orderEntry type="library" name="json-simple-1.1.1" level="project" />
+    <orderEntry type="library" name="jackson-annotations-2.12.3" level="project" />
   </component>
 </module>

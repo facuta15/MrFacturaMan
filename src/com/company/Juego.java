@@ -5,6 +5,7 @@ import com.company.display.Display;
 import com.company.gfx.Assets;
 import com.company.gfx.GameCamera;
 import com.company.input.KeyManager;
+import com.company.input.LoadFile;
 import com.company.input.MouseManager;
 import com.company.input.SavePlayerPosition;
 import com.sun.tools.javac.Main;
@@ -15,10 +16,11 @@ import javax.sound.sampled.Clip;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
+import java.io.Serializable;
 
 //
 
-public class Juego implements Runnable{
+public class Juego implements Runnable, Serializable {
 
     private Display display;
     private int width,height;
@@ -49,6 +51,7 @@ public class Juego implements Runnable{
     private GameCamera camera;
     //Save
     private SavePlayerPosition savePlayerPosition;
+    private LoadFile loadFile;
 
 
 
@@ -76,6 +79,7 @@ public class Juego implements Runnable{
         handler = new Handler(this);
         camera = new GameCamera(handler,0, 0 );
         savePlayerPosition = new SavePlayerPosition(handler);
+        loadFile = new LoadFile(handler);
 
         gameState = new GameState(handler);
         menuState = new MenuState(handler );
@@ -97,6 +101,7 @@ public class Juego implements Runnable{
             State.getCurrentState().tick();
         }
         savePlayerPosition.tick();
+        loadFile.tick();
     }
     private void render(){
         bs = display.getCanvas().getBufferStrategy();
@@ -144,7 +149,7 @@ public class Juego implements Runnable{
                 delta--;
             }
             if(timer >= 1000000000){
-                System.out.println("Ticks and fps:"+ticks);//contador de fps en la consola
+                //System.out.println("Ticks and fps:"+ticks);//contador de fps en la consola
                 ticks=0;
                 timer=0;
             }
