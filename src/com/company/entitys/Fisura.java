@@ -6,6 +6,7 @@ import com.company.gfx.Animation;
 import com.company.gfx.Assets;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class Fisura extends Creature implements Imovement{
     private long speed,timer;
@@ -46,7 +47,7 @@ public class Fisura extends Creature implements Imovement{
 
     @Override
     public void render(Graphics g) {
-
+        g.drawImage(getCurrentAnimFrame(),(int)(x - handler.getCamera().getxOffset()),(int)(y - handler.getCamera().getyOffset()),width,height,null);
     }
 
     @Override
@@ -71,6 +72,16 @@ public class Fisura extends Creature implements Imovement{
             }else
                 direction =true;
         }
+    }
+    private BufferedImage getCurrentAnimFrame(){
+        float previousX = this.x;
+        if (this.x <previousX){
+            return goingLeft.getCurrentFrame();
+        }
+         if (this.x > previousX){
+            return goingRight.getCurrentFrame();
+        }
+        return goingLeft.getCurrentFrame();
     }
     }
 
