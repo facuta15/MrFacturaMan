@@ -1,20 +1,19 @@
 package com.company;
 
-import com.company.States.GameState;
-import com.company.States.MenuState;
-import com.company.States.PauseMenuState;
-import com.company.States.State;
+import com.company.States.*;
 import com.company.display.Display;
 import com.company.gfx.Assets;
 import com.company.gfx.GameCamera;
 import com.company.input.KeyManager;
 import com.company.input.MouseManager;
+import com.company.input.SavePlayerPosition;
 import com.sun.tools.javac.Main;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 
 //
@@ -36,6 +35,7 @@ public class Juego implements Runnable{
     public State gameState;
     public State menuState;
     public State pauseState;
+    public State endGameState;
 
     //INPUT
 
@@ -47,7 +47,9 @@ public class Juego implements Runnable{
 
     //CAMERA
     private GameCamera camera;
-    //Sounds
+    //Save
+    private SavePlayerPosition savePlayerPosition;
+
 
 
     public Juego(String title,int width,int height){
@@ -73,10 +75,14 @@ public class Juego implements Runnable{
 
         handler = new Handler(this);
         camera = new GameCamera(handler,0, 0 );
+        savePlayerPosition = new SavePlayerPosition(handler);
 
         gameState = new GameState(handler);
         menuState = new MenuState(handler );
         pauseState= new PauseMenuState(handler);
+        endGameState= new EndGameState(handler);
+
+
         State.setCurrentState(menuState);
 
 
@@ -85,8 +91,12 @@ public class Juego implements Runnable{
     private void tick(){//es el tickrate o update rate, cada cuanto refreshea
         keyManager.tick();
         if(State.getCurrentState() !=null){
+            if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_ESCAPE)){
+                State.setCurrentState(pauseState);
+            }
             State.getCurrentState().tick();
         }
+        savePlayerPosition.tick();
     }
     private void render(){
         bs = display.getCanvas().getBufferStrategy();

@@ -21,13 +21,19 @@ public class MenuState extends State{
             @Override
             public void onClick() {
                 State.setCurrentState(handler.getJuego().gameState);
+                System.out.println("boton");
             }
         }));
     }
 
     @Override
     public void tick() {
+        System.out.println("sx");
         uiManager.tick();
+    }
+
+    public UiManager getUiManager() {
+        return uiManager;
     }
 
     @Override

@@ -30,6 +30,7 @@ public class Display {
         frame.setLocationRelativeTo(null);//para que aparezca en el medio de la pantalla
         frame.setVisible(true);//es para que la ventana se vea
 
+
         canvas = new Canvas();//seria donde se van a poner los dibujitos
         canvas.setPreferredSize(new Dimension(width,height));
         canvas.setMaximumSize(new Dimension(width,height));

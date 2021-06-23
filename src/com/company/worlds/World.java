@@ -7,6 +7,7 @@ import com.company.entitys.Items.ItemManager;
 import com.company.entitys.Player;
 import com.company.entitys.Seagull;
 import com.company.entitys.statics.Bush;
+import com.company.entitys.statics.Chest;
 import com.company.entitys.statics.Tree;
 import com.company.utils.Utils;
 
@@ -38,6 +39,7 @@ public class World {
         entityManager.addEntity(new Tree(handler,450,250));
         entityManager.addEntity(new Tree(handler,500,700));
         entityManager.addEntity(new Bush(handler,350,400));
+        entityManager.addEntity(new Chest(handler,1100,200));
     }
 
     public void tick(){

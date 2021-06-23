@@ -2,6 +2,8 @@ package com.company.entitys.statics;
 
 import com.company.Handler;
 import com.company.Tiles.Tile;
+import com.company.entitys.Items.Item;
+import com.company.gfx.Assets;
 
 import java.awt.*;
 
@@ -12,7 +14,7 @@ public class Chest extends StaticEntity{
 
     @Override
     public void die() {
-        //State.setCurrentState();
+        handler.getWorld().getItemManager().addItem(Item.tucoItem.createNew((int)x,(int)y));
     }
 
     @Override
@@ -22,6 +24,6 @@ public class Chest extends StaticEntity{
 
     @Override
     public void render(Graphics g) {
-
+        g.drawImage(Assets.chest,(int) (x - handler.getCamera().getxOffset()),(int) (y - handler.getCamera().getyOffset()),width,height,null);
     }
 }
