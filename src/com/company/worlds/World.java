@@ -35,15 +35,21 @@ public class World {
         entityManager.getPlayer().setX(spawnX);
         entityManager.getPlayer().setY(spawnY);
         entityManager.addEntity(new Seagull(handler,750,70, entityManager.getPlayer(),(long)200));
+        entityManager.addEntity(new Seagull(handler,636,806, entityManager.getPlayer(),(long)200));
+        entityManager.addEntity(new Seagull(handler,1798,900, entityManager.getPlayer(),(long)200));
         entityManager.addEntity(new Tree(handler,200,200));
         entityManager.addEntity(new Tree(handler,150,800));
         entityManager.addEntity(new Tree(handler,450,250));
         entityManager.addEntity(new Tree(handler,500,700));
-        entityManager.addEntity(new Bush(handler,350,400));
+        entityManager.addEntity(new Bush(handler,380,400));
         entityManager.addEntity(new Chest(handler,1100,200));
+        entityManager.addEntity(new Chest(handler,75,953));
+        entityManager.addEntity(new Chest(handler,1900,1355));
+        entityManager.addEntity(new Chest(handler,2017,908));
         entityManager.addEntity(new Fisura(handler,1100,250,200));
         entityManager.addEntity(new Fisura(handler,400,580,200));
         entityManager.addEntity(new Fisura(handler,1100,250,200));entityManager.addEntity(new Fisura(handler,1100,250,200));
+
     }
 
     public void tick(){

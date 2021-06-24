@@ -10,8 +10,8 @@ import java.io.IOException;
 
 public class LoadFile {
     private Handler handler;
-    private boolean loadButton;
-    //
+
+
 
 
 
@@ -20,12 +20,12 @@ public class LoadFile {
     }
     public void load(){
 
-        boolean f = true;
         try {
             ObjectMapper objectMapper = new ObjectMapper();
-            File file = new File("saveFile.json");
+            File file = new File("saveFile.json");//carga la partida a partir del archivo
             SaveFileDataToObject readSFD = objectMapper.readValue(file, SaveFileDataToObject.class);
 
+            //resetea la posicion del player a la guardada en el archivo
             handler.getWorld().getEntityManager().getPlayer().setX(readSFD.getX());
             handler.getWorld().getEntityManager().getPlayer().setY(readSFD.getY());
 
@@ -35,7 +35,7 @@ public class LoadFile {
     }
     public void tick(){
         if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_F6)) {
-            loadButton = true;
+            //si el usuario apreta F6 se llama a la funcion de carga
             load();
         }
     }
